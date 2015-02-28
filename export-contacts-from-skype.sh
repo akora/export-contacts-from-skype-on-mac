@@ -3,6 +3,7 @@
 script_name=`basename $0`
 skype_name=$1
 sqlite_location="/usr/bin/"
+db_path_on_mac="Library/Application Support/Skype"
 
 source shell-utils.sh
 
@@ -17,7 +18,7 @@ display_usage () {
 
 check_skype_database () {
   print_message_with_param "Checking SQLite database..." "main.db"
-  if [ -f "$HOME/Library/Application Support/Skype/$skype_name/main.db" ]; then
+  if [ -f "$HOME/$db_path_on_mac/$skype_name/main.db" ]; then
     indicator_green
   else
     indicator_red
@@ -28,7 +29,7 @@ check_skype_database () {
 
 extract_data () {
   print_message_with_param "Extracting data from database..." $skype_name
-  $sqlite_location/sqlite3 -batch "$HOME/Library/Application Support/Skype/$skype_name/main.db" <<EOF
+  $sqlite_location/sqlite3 -batch "$HOME/$db_path_on_mac/$skype_name/main.db" <<EOF
 .mode csv
 .output contacts.csv
 select skypename, fullname, languages, country, city, phone_office, phone_mobile, displayname, given_displayname, phone_mobile_normalized from Contacts;
