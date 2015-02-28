@@ -11,7 +11,7 @@ select skypename, fullname, languages, country, city, phone_office, phone_mobile
 .exit
 ```
 
-***NOTE:*** the path of the main.db is specific to default Mac OS location, modifying it may make the script work on Linux systems as well.
+***NOTE:*** the path of the main.db (`db_path_on_mac`) is specific to default Mac OS location, modifying it may make the script work on Linux systems as well.
 
 #### Tested on
 
